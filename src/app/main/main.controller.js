@@ -68,7 +68,8 @@
           if(trip.status == 'busy'){
             trip.timestamp = new Date(trip.time).getTime();
             var leaveTime = new Date(trips[tripIndex + 1].time).getTime();
-            if(isNaN(leaveTime)) {
+            var duration = leaveTime - trip.timestamp;
+            if(isNaN(leaveTime) || !duration || duration < (6000)) {
               return;
             }
             trip.duration = leaveTime - trip.timestamp;
@@ -78,7 +79,6 @@
         })
       })
 
-      console.log(vm.bathrooms);
     })
 
     function activate() {
