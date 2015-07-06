@@ -14,7 +14,7 @@
     vm.creationDate = 1436210737524;
     vm.showToastr = showToastr;
 
-    var statsUrl = "/app/mocks/stats.json";
+    var statsUrl = "app/mocks/stats.json";
 
     activate();
 
