@@ -26,7 +26,7 @@
                 angular.forEach(bathrooms, function(trip, tripIndex){
                     var date = new Date(trip.time).getTime();
 
-                    if(trip.duration < 1200000) {
+                    if(trip.duration < (1000 * 60 * 20)) {
                         trips.push([date, trip.duration]);
                     }
                     
@@ -57,7 +57,7 @@
                 angular.forEach(bathrooms, function(trip, tripIndex){
                     var date = new Date(trip.time).getTime();
 
-                    if(trip.duration < 1200000) {
+                    if(trip.duration < (1000 * 60 * 60)) {
                         trips.push([date, trip.duration]);
                     }
                     
