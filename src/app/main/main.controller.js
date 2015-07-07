@@ -6,21 +6,19 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, $http, $filter) {
-    var vm = this;
+  function MainController($timeout, $http, $filter) {
+    var self = this;
 
-    vm.awesomeThings = [];
-    vm.classAnimation = '';
-    vm.creationDate = 1436210737524;
-    vm.showToastr = showToastr;
+    self.awesomeThings = [];
+    self.classAnimation = '';
+    self.creationDate = 1436210737524;
 
     var statsUrl = "app/mocks/stats.json";
 
-    activate();
+    self.bathrooms = {}
 
-    vm.bathrooms = {}
 
-    $http.get(statsUrl).success(function(data){
+    var parseData = function(data) {
       var bathrooms = {};
       var orderedBathrooms = {};
 
@@ -32,7 +30,7 @@
         if(!bathrooms[br]) {
           bathrooms[br] = [];
           orderedBathrooms[br] = [];
-          vm.bathrooms[br] = [];
+          self.bathrooms[br] = [];
         }
         if( angular.equals(value.time.slice(0, -4), data[index -1].time.slice(0, -4))) {
           return;
@@ -73,32 +71,21 @@
               return;
             }
             trip.duration = leaveTime - trip.timestamp;
-            vm.bathrooms[bathroomIndex].push(trip);
+            self.bathrooms[bathroomIndex].push(trip);
           }
           
         })
       })
-
-    })
-
-    function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
     }
 
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
+    var getData = function() {
+      $http.get(statsUrl).success(parseData);
     }
 
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
+    getData();
 
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
-    }
+    
+
+
   }
 })();

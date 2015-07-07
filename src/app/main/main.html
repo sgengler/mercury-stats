@@ -1,23 +1,21 @@
 <div class="container">
 
   <div class="jumbotron text-center">
-    <p>
-      Welcome to<acme-malarkey extra-values="['Project Mercury', 'O3 Poops']" />
-    </p>
+    <h2>Welcome to<acme-malarkey extra-values="['Project Mercury', 'O3 Poops']" /></h2>
   </div>
 
   <div class="row">
     <div class="col-xs-12 col-sm-12">
-      <ul class="row">
-        <li ng-repeat="(key, bathroom) in main.bathrooms" class="col-xs-12 col-sm-4">
-          <h2>{{key}}</h2>
-          <ul>
-            <li ng-repeat="trip in bathroom | orderBy : '-time' track by $index">
-              <h4>{{trip.duration | date : 'mm:ss'}} <small>{{trip.time | date}}</small></h4>
+      <div class="row">
+        <div ng-repeat="(key, bathroom) in main.bathrooms" class="col-xs-12 col-sm-4">
+          <h2>{{key | bathroomName}}</h2>
+          <ul class="list-group">
+            <li ng-repeat="trip in bathroom | orderBy : 'time' track by $index" class="list-group-item">
+              <h4>{{trip.time | date : 'hh:mm a'}} <small>busy {{trip.duration | date : 'mm:ss'}}</small></h4>
             </li>
           </ul>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
 

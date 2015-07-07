@@ -2,6 +2,9 @@
   "name": "mercuryStats",
   "version": "0.0.0",
   "dependencies": {
+    "d3": "~3.5.6",
+    "nvd3": "~1.8.1",
+    "angular-nvd3": "~0.1.1",
     "angular-animate": "~1.4.0",
     "angular-cookies": "~1.4.0",
     "angular-touch": "~1.4.0",
