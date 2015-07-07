@@ -42,8 +42,36 @@
                     chartData.push(bathroom);
                 }
                 
-                
+            });
 
+            console.log(chartData);
+            self.data = chartData;
+
+        }
+
+        var setBarChart = function(bathrooms) {
+            var chartData = [];
+
+            angular.forEach(bathrooms, function(bathrooms, index){
+                var trips = [];
+
+                angular.forEach(bathrooms, function(trip, tripIndex){
+                    var date = new Date(trip.time).getTime();
+
+                    if(trip.duration < 1200000) {
+                        trips.push([date, trip.duration]);
+                    }
+                    
+                })
+
+                var bathroom = {
+                    key: index,
+                    values: trips,
+                    area: true
+                }
+
+                chartData.push(bathroom);
+                
             });
 
             console.log(chartData);
@@ -123,7 +151,7 @@
 
         self.options = {
            chart: {
-               type: 'lineChart',
+               type: 'discreteBarChart',
                height: 450,
                margin : {
                    top: 20,
@@ -142,7 +170,7 @@
                xAxis: {
                    showMaxMin: false,
                    tickFormat: function(d) {
-                       return d3.time.format('%a %I:%M%p')(new Date(d))
+                       return '';
                    }
                },
                yAxis: {
