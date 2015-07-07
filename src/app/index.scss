@@ -31,6 +31,13 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
 	margin-top: 20px;
 }
 
+.nv-x .tick {
+	display: none;
+	&:nth-child(5n-8) {
+		display: block;
+	}
+}
+
 /**
  *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

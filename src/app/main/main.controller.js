@@ -44,7 +44,6 @@
                 
             });
 
-            console.log(chartData);
             self.data = chartData;
 
         }
@@ -129,7 +128,7 @@
 						trip.timestamp = new Date(trip.time).getTime();
 						var leaveTime = new Date(trips[tripIndex + 1].time).getTime();
 						var duration = leaveTime - trip.timestamp;
-						if(isNaN(leaveTime) || !duration || duration < (6000)) {
+						if(isNaN(leaveTime) || !duration || duration < (1000 * 30)) {
 							return;
 						}
 						trip.duration = leaveTime - trip.timestamp;
@@ -138,6 +137,8 @@
 					
 				})
 			});
+
+
 
             setChartData(self.bathrooms);
 		}
@@ -167,6 +168,7 @@
                useInteractiveGuideline: false,
                interpolate: "basis",
                showLegend: false,
+               staggerLabels: false,
                xAxis: {
                    showMaxMin: false,
                    tickFormat: function(d) {
@@ -181,13 +183,6 @@
            }
        };
 
-        self.data2 = [
-            {
-                "key" : "North America" ,
-                "values" : []
-            }
-
-        ]
 
 		
 
